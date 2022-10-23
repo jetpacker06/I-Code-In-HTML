@@ -1,0 +1,12 @@
+a:hover a h1::first-letter {
+   color: blue;
+   background-color: orange;
+   font-weight: 55;
+}
+a:hover a h1::first-letter {
+   color: blue;
+   background-color: orange;
+   font-weight: 55;
+}
+
+
