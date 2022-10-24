@@ -24,7 +24,7 @@ public class StyleRule {
         StringBuilder out = new StringBuilder();
         for (Selector selector : this.selectors) {
             out.append(selector.toString());
-            out.append(" ");
+            out.append(", ");
         }
         out.append("{");
         for (Declaration declaration : this.declarations) {
