@@ -1,8 +1,5 @@
 package com.jetpacker06.icodeinhtml.css.kv;
 
-import com.jetpacker06.icodeinhtml.css.kv.Value;
-import com.jetpacker06.icodeinhtml.css.kv.UnitType;
-
 public class Declaration {
     private final String key;
     private final Value value;
@@ -27,7 +24,7 @@ public class Declaration {
     public Declaration(String key, Number value, UnitType unitType) {
         this(key, new Value(value), unitType);
     }
-    public String toString() {
+    public String build() {
         StringBuilder out = new StringBuilder();
         out.append(key);
         out.append(": ");

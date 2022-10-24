@@ -12,10 +12,10 @@ public class CSSBuilder {
         this.rules.addAll(Arrays.asList(rules));
         return this;
     }
-    public String toString() {
+    public String build() {
         StringBuilder out = new StringBuilder();
         for (StyleRule rule : this.rules) {
-            out.append(rule.toString());
+            out.append(rule.build());
         }
         return out.toString();
     }

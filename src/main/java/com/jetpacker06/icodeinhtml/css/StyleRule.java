@@ -20,16 +20,16 @@ public class StyleRule {
         this.declarations.addAll(Arrays.asList(declarations));
         return this;
     }
-    public String toString() {
+    public String build() {
         StringBuilder out = new StringBuilder();
         for (Selector selector : this.selectors) {
-            out.append(selector.toString());
+            out.append(selector.build());
             out.append(", ");
         }
         out.append("{");
         for (Declaration declaration : this.declarations) {
             out.append("\n   ");
-            out.append(declaration.toString());
+            out.append(declaration.build());
         }
         out.append("\n}\n");
         return out.toString();

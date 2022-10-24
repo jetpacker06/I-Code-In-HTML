@@ -25,7 +25,7 @@ public class ICodeInHTML {
         try {
             FileWriter w = new FileWriter("out2.css");
             CSSBuilder b = new CSSBuilder(rule, rule);
-            w.write(b.toString());
+            w.write(b.build());
             w.write("\n\n");
             w.write("");
             w.close();

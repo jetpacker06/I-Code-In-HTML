@@ -3,7 +3,7 @@ package com.jetpacker06.icodeinhtml.css.selector;
 public class Selector {
     private final String element;
     private final Pseudoclass pseudoclass;
-    Pseudoelement pseudoelement;
+    private final Pseudoelement pseudoelement;
     public Selector(String element) {
         this(element, Pseudoelement.NONE, Pseudoclass.NONE);
     }
@@ -19,8 +19,7 @@ public class Selector {
         this.pseudoclass = pseudoclass;
     }
 
-    @Override
-    public String toString() {
+    public String build() {
         StringBuilder out = new StringBuilder();
         out.append(this.element);
         if (this.pseudoclass != Pseudoclass.NONE) {
