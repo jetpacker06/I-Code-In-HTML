@@ -21,12 +21,18 @@ public class StyleRule {
         return this;
     }
     public String build() {
+        int counter = 1;
         StringBuilder out = new StringBuilder();
         for (Selector selector : this.selectors) {
             out.append(selector.build());
-            out.append(", ");
+            System.out.println(counter);
+            System.out.println(this.selectors.size());
+            if (!(counter == this.selectors.size())) {
+                out.append(", ");
+            }
+            counter++;
         }
-        out.append("{");
+        out.append(" {");
         for (Declaration declaration : this.declarations) {
             out.append("\n   ");
             out.append(declaration.build());

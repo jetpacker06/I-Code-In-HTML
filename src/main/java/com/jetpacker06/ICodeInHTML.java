@@ -26,8 +26,6 @@ public class ICodeInHTML {
             FileWriter w = new FileWriter("out2.css");
             CSSBuilder b = new CSSBuilder(rule, rule);
             w.write(b.build());
-            w.write("\n\n");
-            w.write("");
             w.close();
         } catch (IOException ignored) {
         }
