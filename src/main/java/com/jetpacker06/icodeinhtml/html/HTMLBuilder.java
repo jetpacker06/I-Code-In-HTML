@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HTMLBuilder {
-    private String asStr = "<!DOCTYPE html>\n";
+    private final StringBuilder bobTheBuilder = new StringBuilder("<!DOCTYPE html>\n");
     private final int spacesPerIndent;
     private int indentLevel = 0;
     private ArrayList<Tag> latestTags = new ArrayList<>();
@@ -18,23 +18,21 @@ public class HTMLBuilder {
     private HTMLBuilder openTag(Tag tag) {
         this.latestTags.add(tag);
         this.pasteIndent();
-        this.asStr += "<";
-        this.asStr += tag.type;
+        this.bobTheBuilder.append("<");
+        this.bobTheBuilder.append(tag.type);
         if (!Objects.equals(tag.attributes, "")) {
-            this.asStr += " ";
+            this.bobTheBuilder.append(" ");
             String[] splitAttributes = tag.attributes.split("=");
-            String toAdd = "";
             boolean toggle = false;
             for (String t : splitAttributes) {
                 if (toggle) {
                     t = "=\"" + t + "\"";
                 }
-                toAdd += t;
+                this.bobTheBuilder.append(t);
                 toggle = !toggle;
             }
-            this.asStr += toAdd;
         }
-        this.asStr += ">";
+        this.bobTheBuilder.append(">");
         this.indentLevel++;
         return this;
     }
@@ -59,19 +57,19 @@ public class HTMLBuilder {
         this.latestTags.remove(this.latestTags.size() - 1);
         this.indentLevel--;
         this.pasteIndent();
-        this.asStr += "</" + tag.type + ">";
+        this.bobTheBuilder.append("</").append(tag.type).append(">");
         return this;
     }
     public HTMLBuilder addContent(String content) {
         this.pasteIndent();
-        this.asStr += content;
+        this.bobTheBuilder.append(content);
         return this;
     }
-    private void pasteIndent() {
-        this.asStr += "\n";
-        for (int i=0;i<this.indentLevel * this.spacesPerIndent;i++) {
-            this.asStr += " ";
-        }}
+    private HTMLBuilder pasteIndent() {
+        this.bobTheBuilder.append("\n");
+        this.bobTheBuilder.append(" ".repeat(Math.max(0, this.indentLevel * this.spacesPerIndent)));
+        return this;
+    }
     public String build() {
         ArrayList<Tag> backup = this.latestTags;
         while (this.latestTags.size() > 0) {
@@ -79,9 +77,9 @@ public class HTMLBuilder {
             this.latestTags.remove(latestTag);
             this.indentLevel--;
             this.pasteIndent();
-            this.asStr += "</" + latestTag.type + ">";
+            this.bobTheBuilder.append("</").append(latestTag.type).append(">");
         }
         this.latestTags = backup;
-        return this.asStr;
+        return this.bobTheBuilder.toString();
     }
 }

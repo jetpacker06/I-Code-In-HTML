@@ -20,16 +20,16 @@ public class Selector {
     }
 
     public String build() {
-        StringBuilder out = new StringBuilder();
-        out.append(this.element);
+        StringBuilder bobTheBuilder = new StringBuilder();
+        bobTheBuilder.append(this.element);
         if (this.pseudoclass != Pseudoclass.NONE) {
-            out.append(":");
-            out.append(this.pseudoclass.toString().replace("_", "-"));
+            bobTheBuilder.append(":");
+            bobTheBuilder.append(this.pseudoclass.toString().replace("_", "-"));
         }
         else if (this.pseudoelement != Pseudoelement.NONE) {
-            out.append("::");
-            out.append(this.pseudoelement.toString().replace("_", "-"));
+            bobTheBuilder.append("::");
+            bobTheBuilder.append(this.pseudoelement.toString().replace("_", "-"));
         }
-        return out.toString();
+        return bobTheBuilder.toString();
     }
 }

@@ -25,17 +25,17 @@ public class Declaration {
         this(key, new Value(value), unitType);
     }
     public String build() {
-        StringBuilder out = new StringBuilder();
-        out.append(key);
-        out.append(": ");
-        out.append(this.value.toString());
+        StringBuilder bobTheBuilder = new StringBuilder();
+        bobTheBuilder.append(key);
+        bobTheBuilder.append(": ");
+        bobTheBuilder.append(this.value.toString());
         if (this.unitType == UnitType.NONE) {
-            out.append(";");
-            return out.toString();
+            bobTheBuilder.append(";");
+            return bobTheBuilder.toString();
         }
-        out.append(" ");
-        out.append(unitType.toString());
-        out.append(";");
-        return out.toString();
+        bobTheBuilder.append(" ");
+        bobTheBuilder.append(unitType.toString());
+        bobTheBuilder.append(";");
+        return bobTheBuilder.toString();
     }
 }
